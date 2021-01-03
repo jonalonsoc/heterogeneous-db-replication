@@ -1,0 +1,12 @@
+get -d kafka.connect -b kafka.connect:connector=source-debezium-planets-00,task=0,type=connector-task-metrics -s batch-size-avg
+get -d kafka.connect -b kafka.connect:connector=source-debezium-planets-00,task=0,type=source-task-metrics -s source-record-write-rate
+get -d kafka.producer -b kafka.producer:client-id=connector-producer-source-debezium-planets-00-0,type=producer-metrics -s request-latency-avg
+
+get -d kafka.connect -b kafka.connect:connector=sink-mongo-planets-00,task=0,type=sink-task-metrics -s sink-record-send-rate
+get -d kafka.consumer -b kafka.consumer:client-id=connector-consumer-sink-mongo-planets-00-0,type=consumer-fetch-manager-metrics -s fetch-latency-avg
+
+get -d kafka.connect -b kafka.connect:connector=sink-neo4j-planets-00,task=0,type=sink-task-metrics -s sink-record-send-rate
+get -d kafka.consumer -b kafka.consumer:client-id=connector-consumer-sink-neo4j-planets-00-0,type=consumer-fetch-manager-metrics -s fetch-latency-avg
+
+get -d kafka.connect -b kafka.connect:connector=sink-elastic-planets-00,task=0,type=sink-task-metrics -s sink-record-send-rate
+get -d kafka.consumer -b kafka.consumer:client-id=connector-consumer-sink-elastic-planets-00-0,type=consumer-fetch-manager-metrics -s fetch-latency-avg
